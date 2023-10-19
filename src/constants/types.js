@@ -1,0 +1,2 @@
+export const FAVOURITE_CITIES = "FAVOURITE_CITIES";
+export const RECENT_CITIES = "RECENT_CITIES";

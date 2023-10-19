@@ -1,0 +1,324 @@
+body {
+  background-image: url("./assets/Images/inspect/weather/Web/01_Home/background/background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-size: 100% 100%;
+}
+
+#navbar{
+  clear: both;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 90px;
+}
+
+#navdiv{
+  display: flex;
+}
+
+.navs{
+  margin-right: 40px;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.recent-search{
+  min-width: 110px;
+}
+
+.separator{
+  margin-top: -28px;
+  height: 30px;
+  border-top: 0.5px solid white;
+  margin-left: 121px;
+  margin-right: 121px;
+}
+
+.current{
+  border-bottom: 3px solid wheat
+}
+
+#timestamp {
+  margin-top: 30px;
+  color: white;
+  font-size: 13px;
+  margin-right: 130px;
+  min-width: 160px;
+}
+
+#app-logo{
+  margin-left: 121px;
+  margin-top: 40px;
+}
+
+#app-top-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+#search-bar{
+  height: 45px;
+  width: 458px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin-right: 120px;
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#search-text{
+  background: none;
+  border: none;
+  margin: 14px;
+  color: white;
+  font-size: 16px
+}
+
+#search-text::placeholder{
+  color: white;
+}
+
+/* #search-text::-webkit-textfield-decoration-container{
+  border: none;
+} */
+
+#search_logo{
+  /* float: right; */
+  height: 24px;
+  width: 24px;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.location{
+  margin-left: 131px;
+}
+
+.location>h3{
+  color: white;
+}
+
+#fav-section-text{
+  float: left;
+  color: white;
+  margin-top: 0px;
+  margin-left: -20px;
+}
+
+
+
+#fav-icon{
+  background-color: "yellow";
+  float: left;
+  height: 19px;
+  width: 19px;
+  margin-left: 134px;
+}
+
+#displayed-weather{
+  margin-top: 34px;
+  clear: both;
+  display: flex;
+  margin: auto;
+  width: 80px;
+  height: 84px;
+}
+
+#temperature-section{
+  clear: both;
+  margin: auto;
+  text-align: center;
+}
+
+ #temperature-section>p{
+  clear: both;
+  font-size: 64px;
+  color: white;
+  display: inline;
+}
+
+#temperature-section div{
+  display: inline-block;
+  border: 1px solid white;
+  height: 30px;
+  width: 28px;
+  margin-top: -30px;
+} 
+
+#temperature-section div p{
+  float: left;
+}
+
+.degree{
+  margin-top: 3px;
+  font-size: 11px;
+  margin-left: 6px;
+}
+
+.temp-type{
+  margin-top: 6px;
+  font-size: 16px;
+  margin-left: 1px;
+}
+
+#selected-degree{
+  background-color: white;
+  color: red;
+}
+
+#unselected-degree{
+ color: white;
+}
+
+#temp-description{
+  font-size: 22px;
+  color: white;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#extra-info-section{
+  color: white;
+  border-top: 0.5px solid white;
+  margin-left: 121px;
+  margin-right: 121px;
+  margin-top: 300px;
+  display: flex;
+  justify-content: space-between;
+  /* overflow: scroll; NOTE: this is only for media query of mobile devices */
+  /* TODO: Want to align it to the bottom and not do margin-top */
+}
+
+.value-range p{
+  float: left;
+  margin-top: -15px;
+}
+
+.dash{
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.degree-text{
+  margin-top: 13px;
+  font-size: 11px;
+  margin-left: 1px;
+}
+
+.stat-number{
+  margin-top: 13px;
+  font-size: 22px;
+  margin-left: 1px;
+  font-weight: bold;
+}
+
+.category-icon{
+  float: left;
+  margin-left: 62px;
+  margin-top: 36px;
+}
+
+.stat-section{
+  float: left;
+  margin-left: 17px;
+  margin-top: 20px;
+}
+
+.stat-section>p{
+  font-size: 15px;
+  margin-left: 3px;
+}
+
+#stat-view{
+  min-width: 220px;
+}
+
+/* Media Query for Screens Smaller Than 944px */
+@media (max-width: 944px) {
+  #extra-info-section{
+    color: white;
+    border-top: 0.5px solid orange;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 300px;
+    display: flex;
+    justify-content: space-between;
+    /* overflow: scroll; NOTE: this is only for media query of mobile devices */
+    /* TODO: Want to align it to the bottom and not do margin-top */
+  }
+
+  #search-bar{
+    height: 45px;
+    width: 308px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-right: 120px;
+    margin-top: 35px;
+  }
+}
+
+/* Media Query for Screens Smaller Than 768px */
+@media (max-width: 768px) {
+  #extra-info-section{
+    color: white;
+    border-top: 0.5px solid red;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 300px;
+    display: flex;
+    justify-content: space-between;
+    /* overflow: scroll; NOTE: this is only for media query of mobile devices */
+    /* TODO: Want to align it to the bottom and not do margin-top */
+  }
+
+  #search-bar{
+    height: 45px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.);
+    border-radius: 5px;
+    margin-right: 140px;
+    margin-top: 35px;
+  }
+
+ 
+
+ 
+}
+
+
+
+/* Media Query for Screens Smaller Than 520px */
+@media (max-width: 520px) {
+  #extra-info-section{
+    color: white;
+    border-top: 0.5px solid yellow;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 300px;
+    display: flex;
+    justify-content: space-between;
+    overflow: scroll; 
+    /* TODO: Want to align it to the bottom and not do margin-top */
+  }
+}
+
+/* Media Query for Screens Smaller Than 480px */
+@media (max-width: 480px) {
+  #extra-info-section{
+    color: white;
+    border-top: 0.5px solid green;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 300px;
+    display: flex;
+    justify-content: space-between;
+    overflow: scroll; 
+    /* TODO: Want to align it to the bottom and not do margin-top */
+  }
+}

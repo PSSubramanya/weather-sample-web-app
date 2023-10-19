@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="141px" height="30px" viewBox="0 0 141 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>58E6DC2D-FFD3-40C3-B4B9-C72512013781</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="23.065691%" y1="0%" x2="82.3588497%" y2="86.0455056%" id="linearGradient-1">
+            <stop stop-color="#FAD961" offset="0%"></stop>
+            <stop stop-color="#F76B1C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01_Home" transform="translate(-121.000000, -43.000000)">
+            <g id="logo_web" transform="translate(121.000000, 43.000000)">
+                <path d="M33.2898462,29.76 L14.9464615,29.76 C6.69175877,29.76 0,23.0979971 0,14.88 C0,6.66200292 6.69175877,0 14.9464615,0 C21.1468586,0 26.4654365,3.75872837 28.7286374,9.11229232 C30.1156817,8.47306646 31.6609217,8.11636364 33.2898462,8.11636364 C39.2932664,8.11636364 44.16,12.9614567 44.16,18.9381818 C44.16,24.914907 39.2932664,29.76 33.2898462,29.76 Z" id="Combined-Shape" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                <text id="W" font-family="HiraKakuStd-W8, Hiragino Kaku Gothic Std" font-size="17.28" font-weight="600" fill="#FFFFFF">
+                    <tspan x="22.08" y="25.32">W</tspan>
+                </text>
+                <text id="eather" font-family="HiraKakuStd-W8, Hiragino Kaku Gothic Std" font-size="17.28" font-weight="600" letter-spacing="2.68800001" fill="#FFFFFF">
+                    <tspan x="46.08" y="25.32">EATHE</tspan>
+                    <tspan x="126.86016" y="25.32">R</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

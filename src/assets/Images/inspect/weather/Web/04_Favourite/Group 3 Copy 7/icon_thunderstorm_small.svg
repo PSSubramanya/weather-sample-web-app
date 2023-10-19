@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="30px" viewBox="0 0 34 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>ACAE5569-DA21-4284-B186-68C6FD12E0FF</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <polygon id="path-1" points="0.117655814 0.172875 10.2713302 0.172875 10.2713302 15 0.117655814 15"></polygon>
+    </defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="04_Favourite" transform="translate(-539.000000, -517.000000)">
+            <g id="Group-3-Copy-7" transform="translate(120.000000, 496.000000)">
+                <g id="icon_thunderstorm_small" transform="translate(420.000000, 22.000000)">
+                    <path d="M22.4425674,20.400825 L24.7666605,20.400825 C28.3752186,20.400825 31.2991256,17.453325 31.2991256,13.818075 C31.2991256,10.182075 28.3752186,7.233075 24.7666605,7.233075 C24.5962419,7.233075 24.4273116,7.243575 24.2598698,7.255575 C24.260614,7.200825 24.2643349,7.145325 24.2643349,7.089825 C24.2643349,3.172575 21.1149395,7.5e-05 17.2288,7.5e-05 C13.6663814,7.5e-05 10.724614,2.668575 10.2602419,6.130575 C10.0518698,6.095325 9.83828837,6.077325 9.62024186,6.077325 C7.4792186,6.077325 5.74377674,7.824825 5.74377674,9.982575 C5.74377674,10.100325 5.74898605,10.214325 5.75866047,10.326825 C5.51977674,10.291575 5.27493953,10.272825 5.02563721,10.272825 C2.24982326,10.272825 0.000148837209,12.540825 0.000148837209,15.336825 C0.000148837209,18.135075 2.24982326,20.400825 5.02563721,20.400825 L8.17875349,20.400825" id="Stroke-1" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <g id="Group-5" transform="translate(9.674419, 13.983375)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-4"></g>
+                        <polygon id="Fill-3" fill="#FFFFFF" mask="url(#mask-2)" points="2.97384186 0.172875 0.117655814 8.633625 3.86612093 8.633625 2.33384186 15.000375 10.2713302 6.084375 6.29067907 6.084375 10.2713302 0.172875"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
