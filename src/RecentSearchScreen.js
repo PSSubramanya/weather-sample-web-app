@@ -30,6 +30,7 @@ import clear_night_icon from "./assets/Images/inspect/weather/Web/01_Home/backgr
 import nothing_icon from "./assets/Images/inspect/weather/Web/03_Favourite_blank/Group 38/Group 3/icon_nothing.svg";
 
 function RecentSearchScreen() {
+  const dispatch = useDispatch();
   const myAPIKey = "aa3cfa6eefb1da106652caf207699731";
 
   const favouriteCitiesList = [
@@ -267,6 +268,7 @@ function RecentSearchScreen() {
                   onClick={() => {
                     const tempArray = [];
                     setRecentPlaces(tempArray);
+                    dispatch(setRecentCities(tempArray));
                     handleCloseAlert();
                   }}
                 >
@@ -336,6 +338,31 @@ function RecentSearchScreen() {
                         //   );
                         //   setFavouritePlaces(tempArray);
                         // }
+
+                        let tempArray = [];
+                        const tempFavouriteCitiesArray = favouritePlaces;
+                        const favCityObject = {
+                          city: data?.city,
+                          state: data?.state,
+                          temp: Math.floor(data?.temp),
+                          weather: data?.weather,
+                          description: data?.description,
+                        };
+
+                        if (
+                          JSON.stringify(favouritePlaces).includes(
+                            JSON.stringify(favCityObject)
+                          )
+                        ) {
+                          tempArray = favouritePlaces.filter(
+                            (obj) =>
+                              JSON.stringify(obj) !==
+                              JSON.stringify(favCityObject)
+                          );
+                          setFavouritePlaces(tempArray);
+                        }
+
+                        dispatch(setFavouriteCities(tempArray));
                       }}
                     />
                   </div>
