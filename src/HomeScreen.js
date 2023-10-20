@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   setFavouriteCities,
@@ -28,27 +28,55 @@ function HomeScreen() {
   const dispatch = useDispatch();
   const myAPIKey = "aa3cfa6eefb1da106652caf207699731";
 
+  const loadedFavouriteCities = useSelector(
+    (state) => state?.userDataReducer?.favouriteLocations
+  );
+
+  const loadedRecentCities = useSelector(
+    (state) => state?.userDataReducer?.recentLocations
+  );
+
   const [favouriteOn, setFavouriteOn] = useState(false);
   const [temperatureType, setTemperatureType] = useState("celsius");
   const [weatherData, setWeatherData] = useState([]);
 
   const [searchPlace, setSearchPlace] = useState("Udupi");
   const [stateName, setStateName] = useState("Karnataka");
+  // const [recentPlaces, setRecentPlaces] = useState([]);
+  // const [favouritePlaces, setFavouritePlaces] = useState([]);
   const [recentPlaces, setRecentPlaces] = useState([]);
   const [favouritePlaces, setFavouritePlaces] = useState([]);
+
+  const favCities =
+    JSON.stringify(loadedFavouriteCities?.data) === "{}"
+      ? []
+      : loadedFavouriteCities?.data;
+
+  const recentCities =
+    JSON.stringify(loadedRecentCities?.data) === "{}"
+      ? []
+      : loadedRecentCities?.data;
 
   useEffect(() => {
     const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchPlace}&appid=${myAPIKey}`;
     fetchWeatherDataValue(weatherURL);
+
+    // const favCities =
+    //   JSON.stringify(loadedFavouriteCities?.data) === "{}"
+    //     ? []
+    //     : loadedFavouriteCities?.data;
+
+    // const recentCities =
+    //   JSON.stringify(loadedRecentCities?.data) === "{}"
+    //     ? []
+    //     : loadedRecentCities?.data;
+
+    setFavouritePlaces(favCities);
+    setRecentPlaces(recentCities);
   }, []);
 
   useEffect(() => {
-    let tempArray = [];
     const weatherDataURL = `http://api.openweathermap.org/geo/1.0/direct?q=${searchPlace}&limit=1&APPID=${myAPIKey}`;
-    tempArray = [...recentPlaces, searchPlace];
-    setRecentPlaces(tempArray);
-    dispatch(setRecentCities(tempArray));
-    console.log("recent places", tempArray);
 
     fetch(weatherDataURL)?.then((res) => {
       res?.json().then((resp) => {
@@ -57,6 +85,26 @@ function HomeScreen() {
       });
     });
   }, [weatherData]);
+
+  useEffect(() => {
+    if (weatherData?.name !== undefined) {
+      // let tempArray = recentPlaces;
+      let tempArray = recentCities;
+      console.log("recent-places 1", tempArray);
+      const favCityObject = {
+        city: searchPlace,
+        state: stateName,
+        temp: Math.floor(weatherData?.main?.temp - 273),
+        weather: weatherData?.weather?.[0]?.main,
+        description: weatherData?.weather?.[0]?.description,
+      };
+      // tempArray = [...recentPlaces, favCityObject];
+      tempArray = [...tempArray, favCityObject];
+      setRecentPlaces(tempArray);
+      dispatch(setRecentCities(tempArray));
+      console.log("recent-places 2", tempArray);
+    }
+  }, [weatherData?.name]);
 
   const fetchWeatherDataValue = (apiURL) => {
     fetch(apiURL).then((res) => {
@@ -172,25 +220,6 @@ function HomeScreen() {
               />
             </div>
           </div>
-          {/* <div id="search-bar">
-            <input
-              id="search-text"
-              type="text"
-              placeholder="Search city"
-              name="search-value"
-              onChange={handleText}
-              value={searchPlace}
-            />
-            <img
-              id="search_logo"
-              src={search_icon}
-              alt="search_logo"
-              onClick={() => {
-                const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchPlace}&appid=${myAPIKey}`;
-                fetchWeatherDataValue(weatherURL);
-              }}
-            />
-          </div> */}
           <nav id="navbar">
             <div class="container">
               <ul id="navdiv">
@@ -220,7 +249,9 @@ function HomeScreen() {
             {searchPlace}, {stateName}
           </h3>
         </div>
-        {favouritePlaces?.includes(searchPlace) ? (
+        {JSON.stringify(favouritePlaces)?.includes(
+          JSON.stringify(searchPlace)
+        ) ? (
           <img
             id="fav-icon"
             src={highlighted_fav_icon}
@@ -229,15 +260,24 @@ function HomeScreen() {
               setFavouriteOn(!favouriteOn);
               let tempArray = [];
               const tempFavouriteCitiesArray = favouritePlaces;
+              const favCityObject = {
+                city: searchPlace,
+                state: stateName,
+                temp: Math.floor(weatherData?.main?.temp - 273),
+                weather: weatherData?.weather?.[0]?.main,
+                description: weatherData?.weather?.[0]?.description,
+              };
 
-              tempFavouriteCitiesArray.map((cities, cityId) => {
-                if (cities.includes(searchPlace)) {
-                  tempArray = tempFavouriteCitiesArray.filter(
-                    (obj) => obj !== searchPlace
-                  );
-                  setFavouritePlaces(tempArray);
-                }
-              });
+              if (
+                JSON.stringify(favouritePlaces).includes(
+                  JSON.stringify(favCityObject)
+                )
+              ) {
+                tempArray = favouritePlaces.filter(
+                  (obj) => JSON.stringify(obj) !== JSON.stringify(favCityObject)
+                );
+                setFavouritePlaces(tempArray);
+              }
 
               dispatch(setFavouriteCities(tempArray));
 
@@ -252,7 +292,15 @@ function HomeScreen() {
             onClick={() => {
               setFavouriteOn(!favouriteOn);
               let tempArray = [];
-              tempArray = [...favouritePlaces, searchPlace];
+              const favCityObject = {
+                city: searchPlace,
+                state: stateName,
+                temp: Math.floor(weatherData?.main?.temp - 273),
+                weather: weatherData?.weather?.[0]?.main,
+                description: weatherData?.weather?.[0]?.description,
+              };
+              // tempArray = [...favouritePlaces, searchPlace];
+              tempArray = [...favouritePlaces, favCityObject];
               setFavouritePlaces(tempArray);
               dispatch(setFavouriteCities(tempArray));
               console.log("fav places 2", favouritePlaces);

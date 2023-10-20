@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setFavouriteCities } from "./redux/actions/user-actions.js";
 import HomeScreen from "./HomeScreen.js";
 // import FavouriteScreen from "./FavouriteScreen.js";
 import RecentSearchScreen from "./RecentSearchScreen.js";
@@ -26,46 +27,8 @@ import clear_night_icon from "./assets/Images/inspect/weather/Web/01_Home/backgr
 import nothing_icon from "./assets/Images/inspect/weather/Web/03_Favourite_blank/Group 38/Group 3/icon_nothing.svg";
 
 function FavouriteScreen() {
+  const dispatch = useDispatch();
   const myAPIKey = "aa3cfa6eefb1da106652caf207699731";
-
-  const favouriteCitiesList = [
-    {
-      city: "Udupi",
-      state: "Karnataka",
-      weather: "Mostly Sunny",
-      temp: 31,
-    },
-    {
-      city: "Mangaluru",
-      state: "Karnataka",
-      weather: "Rain",
-      temp: 29,
-    },
-    {
-      city: "Mysore",
-      state: "Karnataka",
-      weather: "Mostly Cloudy",
-      temp: 32,
-    },
-    {
-      city: "Bengaluru",
-      state: "Karnataka",
-      weather: "Partially Cloudy",
-      temp: 30,
-    },
-    {
-      city: "Ayodhya",
-      state: "Uttar Pradesh",
-      weather: "Thunder Storm",
-      temp: 31,
-    },
-    {
-      city: "Jaipur",
-      state: "Rajasthan",
-      weather: "Clear Night",
-      temp: 24,
-    },
-  ];
 
   const loadedFavouriteCities = useSelector(
     (state) => state?.userDataReducer?.favouriteLocations
@@ -78,34 +41,24 @@ function FavouriteScreen() {
   const [stateName, setStateName] = useState("");
   const [recentPlaces, setRecentPlaces] = useState([]);
   const [favouritePlaces, setFavouritePlaces] = useState([]);
-  const [latlongValue, setLatLongValue] = useState({ lat: 0, long: 0 });
   const [weatherData, setWeatherData] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    setFavouritePlaces(favouriteCitiesList);
+    const favCities =
+      JSON.stringify(loadedFavouriteCities?.data) === "{}"
+        ? []
+        : loadedFavouriteCities?.data;
+
+    setFavouritePlaces(favCities);
+    //dispatch(setFavouriteCities(tempArray));
   }, []);
 
-  useEffect(() => {
-    let tempArray = [];
-    const weatherDataURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${latlongValue?.lat}&lon=${latlongValue?.long}&APPID=${myAPIKey}`;
-    tempArray = [...recentPlaces, searchPlace];
-    setRecentPlaces(tempArray);
-    console.log("recent places", tempArray);
-
-    fetch(weatherDataURL)?.then((res) => {
-      res?.json().then((resp) => {
-        console.log("ALL DATA", weatherDataURL, resp);
-      });
-    });
-  }, [latlongValue]);
-
-  const fetchLatLongValue = (apiURL) => {
+  const fetchWeatherDataValue = (apiURL) => {
     fetch(apiURL).then((res) => {
       res.json().then((resp) => {
-        console.log("LAT LONG VAL", apiURL, resp);
-        setStateName(resp?.[0]?.state);
-        setLatLongValue({ lat: resp?.[0]?.lat, long: resp?.[0]?.lon });
+        console.log("WEATHER DATA", apiURL, resp);
+        setWeatherData(resp);
       });
     });
   };
@@ -172,15 +125,17 @@ function FavouriteScreen() {
                 onChange={handleText}
                 value={searchPlace}
               />
+              {/* <Link to={"/"}> */}
               <img
                 id="search_logo"
                 src={search_icon}
                 alt="search_logo"
                 onClick={() => {
-                  const latLongAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${searchPlace}&limit=1&APPID=${myAPIKey}`;
-                  fetchLatLongValue(latLongAPI);
+                  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchPlace}&appid=${myAPIKey}`;
+                  fetchWeatherDataValue(weatherURL);
                 }}
               />
+              {/* </Link> */}
             </div>
           </div>
 
@@ -229,6 +184,7 @@ function FavouriteScreen() {
                   onClick={() => {
                     const tempArray = [];
                     setFavouritePlaces(tempArray);
+                    dispatch(setFavouriteCities(tempArray));
                     handleCloseAlert();
                   }}
                 >
@@ -296,6 +252,7 @@ function FavouriteScreen() {
                           (obj) => obj !== data
                         );
                         setFavouritePlaces(tempArray);
+                        dispatch(setFavouriteCities(tempArray));
                       }
                     }}
                   />

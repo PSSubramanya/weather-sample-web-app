@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  setFavouriteCities,
+  setRecentCities,
+} from "./redux/actions/user-actions.js";
 import HomeScreen from "./HomeScreen.js";
 import FavouriteScreen from "./FavouriteScreen.js";
 // import RecentSearchScreen from "./RecentSearchScreen.js";
@@ -82,6 +86,10 @@ function RecentSearchScreen() {
     },
   ];
 
+  const loadedFavouriteCities = useSelector(
+    (state) => state?.userDataReducer?.favouriteLocations
+  );
+
   const loadedRecentCities = useSelector(
     (state) => state?.userDataReducer?.recentLocations
   );
@@ -99,32 +107,43 @@ function RecentSearchScreen() {
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    setFavouritePlaces(favouriteCitiesList);
-    setRecentPlaces(recentCitiesList);
+    const favCities =
+      JSON.stringify(loadedFavouriteCities?.data) === "{}"
+        ? []
+        : loadedFavouriteCities?.data;
+
+    const recentCities =
+      JSON.stringify(loadedRecentCities?.data) === "{}"
+        ? []
+        : loadedRecentCities?.data;
+
+    setFavouritePlaces(favCities);
+    setRecentPlaces(recentCities);
   }, []);
 
   console.log("RECENT FAV PLACES icon val", favouriteIconArray);
 
   // useEffect(() => {
   //   let tempArray = [];
-  //   const weatherDataURL = `https://api.openweathermap.org/data/3.0/onecall?lat=${latlongValue?.lat}&lon=${latlongValue?.long}&APPID=${myAPIKey}`;
+  //   const weatherDataURL = `http://api.openweathermap.org/geo/1.0/direct?q=${searchPlace}&limit=1&APPID=${myAPIKey}`;
   //   tempArray = [...recentPlaces, searchPlace];
   //   setRecentPlaces(tempArray);
+  //   dispatch(setRecentCities(tempArray));
   //   console.log("recent places", tempArray);
 
   //   fetch(weatherDataURL)?.then((res) => {
   //     res?.json().then((resp) => {
   //       console.log("ALL DATA", weatherDataURL, resp);
+  //       setStateName(resp?.[0]?.state);
   //     });
   //   });
-  // }, [latlongValue]);
+  // }, [weatherData]);
 
-  const fetchLatLongValue = (apiURL) => {
+  const fetchWeatherDataValue = (apiURL) => {
     fetch(apiURL).then((res) => {
       res.json().then((resp) => {
-        console.log("LAT LONG VAL", apiURL, resp);
-        setStateName(resp?.[0]?.state);
-        setLatLongValue({ lat: resp?.[0]?.lat, long: resp?.[0]?.lon });
+        console.log("WEATHER DATA", apiURL, resp);
+        setWeatherData(resp);
       });
     });
   };
@@ -196,8 +215,8 @@ function RecentSearchScreen() {
                 src={search_icon}
                 alt="search_logo"
                 onClick={() => {
-                  const latLongAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${searchPlace}&limit=1&APPID=${myAPIKey}`;
-                  fetchLatLongValue(latLongAPI);
+                  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchPlace}&appid=${myAPIKey}`;
+                  fetchWeatherDataValue(weatherURL);
                 }}
               />
             </div>
