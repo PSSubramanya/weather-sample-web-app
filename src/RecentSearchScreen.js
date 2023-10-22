@@ -326,21 +326,9 @@ function RecentSearchScreen() {
                     <img
                       id="fav-icon"
                       src={highlighted_fav_icon}
-                      // src={getFavIcon()}
                       alt="favourite-icon"
                       onClick={() => {
-                        // setFavouriteOn(!favouriteOn);
-                        // const tempFavouritePlacesArray = favouritePlaces;
-                        // let tempArray = [];
-                        // if (tempFavouritePlacesArray?.includes(data)) {
-                        //   tempArray = tempFavouritePlacesArray.filter(
-                        //     (obj) => obj !== data
-                        //   );
-                        //   setFavouritePlaces(tempArray);
-                        // }
-
                         let tempArray = [];
-                        const tempFavouriteCitiesArray = favouritePlaces;
                         const favCityObject = {
                           city: data?.city,
                           state: data?.state,
@@ -371,18 +359,20 @@ function RecentSearchScreen() {
                     <img
                       id="fav-icon"
                       src={empty_fav_icon}
-                      // src={getFavIcon()}
                       alt="favourite-icon"
                       onClick={() => {
-                        // setFavouriteOn(!favouriteOn);
-                        // const tempFavouritePlacesArray = favouritePlaces;
-                        // let tempArray = [];
-                        // if (tempFavouritePlacesArray?.includes(data)) {
-                        //   tempArray = tempFavouritePlacesArray.filter(
-                        //     (obj) => obj !== data
-                        //   );
-                        //   setFavouritePlaces(tempArray);
-                        // }
+                        let tempArray = [];
+                        const favCityObject = {
+                          city: data?.city,
+                          state: data?.state,
+                          temp: Math.floor(data?.temp),
+                          weather: data?.weather,
+                          description: data?.description,
+                        };
+
+                        tempArray = [...favouritePlaces, favCityObject];
+                        setFavouritePlaces(tempArray);
+                        dispatch(setFavouriteCities(tempArray));
                       }}
                     />
                   </div>
