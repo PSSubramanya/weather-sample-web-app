@@ -62,7 +62,6 @@ body {
 #search-bar{
   height: 45px;
   width: 458px;
-  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   margin-right: 120px;
   margin-top: 35px;
@@ -73,9 +72,12 @@ body {
 #search-text{
   background: none;
   border: none;
-  margin: 14px;
+  padding-left: 10px;
   color: white;
-  font-size: 16px
+  font-size: 16px;
+  height: 45px;
+  width: 458px;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 #search-text::placeholder{
@@ -85,9 +87,10 @@ body {
 #search_logo{
   height: 24px;
   width: 24px;
-  margin-right: 15px;
+  right: 140px;
   margin-top: 10px;
   margin-bottom: 10px;
+  position: absolute;
 }
 
 .location{
@@ -251,10 +254,18 @@ body {
   #search-bar{
     height: 45px;
     width: 308px;
-    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     margin-right:80px;
     margin-top: 35px;
+  }
+
+  #search_logo{
+    height: 24px;
+    width: 24px;
+    right: 110px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: absolute;
   }
 
   .separator{
@@ -313,10 +324,18 @@ body {
   #search-bar{
     height: 45px;
     width: 250px;
-    background-color: rgba(255, 255, 255, 0.);
     border-radius: 5px;
     margin-right: 80px;
     margin-top: 35px;
+  }
+
+  #search_logo{
+    height: 24px;
+    width: 24px;
+    right: 90px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: absolute;
   }
 
   #timestamp {
@@ -344,10 +363,18 @@ body {
   #search-bar{
     height: 45px;
     width: 250px;
-    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     margin-right: 10px;
     margin-top: 35px;
+  }
+
+  #search_logo{
+    height: 24px;
+    width: 24px;
+    right: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: absolute;
   }
 
   #navbar{
@@ -415,18 +442,9 @@ body {
   #search-bar{
     height: 45px;
     width: 230px;
-    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     margin-left: 30px;
-    margin-top: 35px;
-  }
-  
-  #search-text{
-    background: none;
-    border: none;
-    margin: 14px;
-    color: white;
-    font-size: 16px
+    margin-top: 30px;
   }
   
   #search_logo{
