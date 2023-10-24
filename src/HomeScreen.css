@@ -82,12 +82,7 @@ body {
   color: white;
 }
 
-/* #search-text::-webkit-textfield-decoration-container{
-  border: none;
-} */
-
 #search_logo{
-  /* float: right; */
   height: 24px;
   width: 24px;
   margin-right: 15px;
@@ -104,20 +99,20 @@ body {
 }
 
 #fav-section-text{
-  float: left;
   color: white;
   margin-top: 0px;
   margin-left: -20px;
 }
 
-
+#fav-section{
+  display: flex;
+}
 
 #fav-icon{
   background-color: "yellow";
-  float: left;
   height: 19px;
   width: 19px;
-  margin-left: 134px;
+  margin-left: 124px;
 }
 
 #displayed-weather{
@@ -191,13 +186,16 @@ body {
   margin-top: 300px;
   display: flex;
   justify-content: space-between;
-  /* overflow: scroll; NOTE: this is only for media query of mobile devices */
-  /* TODO: Want to align it to the bottom and not do margin-top */
+  overflow: scroll; 
+}
+
+.value-range{
+  clear: both;
+  display: flex;
 }
 
 .value-range p{
-  float: left;
-  margin-top: -15px;
+  margin-top: -10px;
 }
 
 .dash{
@@ -219,13 +217,10 @@ body {
 }
 
 .category-icon{
-  float: left;
   margin-left: 62px;
-  margin-top: 36px;
 }
 
 .stat-section{
-  float: left;
   margin-left: 17px;
   margin-top: 20px;
 }
@@ -237,20 +232,20 @@ body {
 
 #stat-view{
   min-width: 220px;
+  display: flex;
 }
 
 /* Media Query for Screens Smaller Than 944px */
 @media (max-width: 944px) {
   #extra-info-section{
     color: white;
-    border-top: 0.5px solid orange;
+    border-top: 0.5px solid white;
     margin-left: 80px;
     margin-right: 80px;
     margin-top: 300px;
     display: flex;
     justify-content: space-between;
-    /* overflow: scroll; NOTE: this is only for media query of mobile devices */
-    /* TODO: Want to align it to the bottom and not do margin-top */
+    overflow: scroll; 
   }
 
   #search-bar{
@@ -258,8 +253,47 @@ body {
     width: 308px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    margin-right: 120px;
+    margin-right:80px;
     margin-top: 35px;
+  }
+
+  .separator{
+    margin-top: -28px;
+    height: 30px;
+    border-top: 0.5px solid white;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+
+  #app-logo{
+    margin-left: 80px;
+    margin-top: 40px;
+  }
+
+  #navbar{
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+  }
+
+  .location{
+    margin-left: 91px;
+  }
+  
+  #fav-icon{
+    background-color: "yellow";
+    height: 19px;
+    width: 19px;
+    margin-left: 84px;
+  }
+
+  #timestamp {
+    margin-top: 30px;
+    color: white;
+    font-size: 13px;
+    margin-right: 80px;
+    min-width: 160px;
   }
 }
 
@@ -267,14 +301,13 @@ body {
 @media (max-width: 768px) {
   #extra-info-section{
     color: white;
-    border-top: 0.5px solid red;
+    border-top: 0.5px solid white;
     margin-left: 80px;
     margin-right: 80px;
     margin-top: 300px;
     display: flex;
     justify-content: space-between;
-    /* overflow: scroll; NOTE: this is only for media query of mobile devices */
-    /* TODO: Want to align it to the bottom and not do margin-top */
+    overflow: scroll; 
   }
 
   #search-bar{
@@ -282,43 +315,144 @@ body {
     width: 250px;
     background-color: rgba(255, 255, 255, 0.);
     border-radius: 5px;
-    margin-right: 140px;
+    margin-right: 80px;
     margin-top: 35px;
   }
 
- 
-
- 
+  #timestamp {
+    margin-top: 30px;
+    color: white;
+    font-size: 13px;
+    margin-right: 80px;
+    min-width: 160px;
+  }
 }
 
-
-
-/* Media Query for Screens Smaller Than 520px */
-@media (max-width: 520px) {
+/* Media Query for Screens Smaller Than 768px */
+@media (max-width: 660px) {
   #extra-info-section{
     color: white;
-    border-top: 0.5px solid yellow;
-    margin-left: 10px;
-    margin-right: 10px;
+    border-top: 0.5px solid white;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 300px;
     display: flex;
     justify-content: space-between;
     overflow: scroll; 
-    /* TODO: Want to align it to the bottom and not do margin-top */
   }
+
+  #search-bar{
+    height: 45px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 35px;
+  }
+
+  #navbar{
+    display: flex;
+    justify-content: center;
+  }
+
+  #navdiv{
+    display: none;
+  }
+
+  .separator{
+    margin-top: -28px;
+    height: 30px;
+    border: none;
+    margin-left: 121px;
+    margin-right: 121px;
+  }
+
+  #timestamp {
+    margin-top: 30px;
+    margin-left: 20px;
+    color: white;
+    font-size: 16px;
+    min-width: 160px;
+    text-transform: uppercase;
+  }
+
+  .location{
+    margin-left: 0px;
+    margin-top: -20px;
+    display: flex;
+    justify-content: center;    
+  }
+  
+  #fav-section{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-self: center;
+  }
+
+  #fav-icon{
+    background-color: "yellow";
+    height: 19px;
+    width: 19px;
+    margin-left: 0px;
+  }
+
+  
 }
 
 /* Media Query for Screens Smaller Than 480px */
 @media (max-width: 480px) {
   #extra-info-section{
     color: white;
-    border-top: 0.5px solid green;
+    border-top: 0.5px solid white;
     margin-left: 1px;
-    margin-right: 1px;
+    margin-right: -100px;
     margin-top: 300px;
     display: flex;
-    justify-content: space-between;
     overflow: scroll; 
-    /* TODO: Want to align it to the bottom and not do margin-top */
+  }
+
+  #search-bar{
+    height: 45px;
+    width: 230px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin-left: 30px;
+    margin-top: 35px;
+  }
+  
+  #search-text{
+    background: none;
+    border: none;
+    margin: 14px;
+    color: white;
+    font-size: 16px
+  }
+  
+  #search_logo{
+    height: 24px;
+    width: 24px;
+    margin-left: -50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #app-logo{
+    margin-left: 10px;
+    margin-top: 40px;
+    height: 24px;
+    width: 113px;
+  }
+}
+
+@media (max-width: 380px) {
+  #extra-info-section{
+    color: white;
+    border-top: 0.5px solid white;
+    margin-left: 1px;
+    margin-right: -100px;
+    margin-top: 140px;
+    display: flex;
+    overflow: scroll; 
   }
 }

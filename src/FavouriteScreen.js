@@ -28,6 +28,8 @@ import nothing_icon from "./assets/Images/inspect/weather/Web/03_Favourite_blank
 
 function FavouriteScreen() {
   const dispatch = useDispatch();
+  const today = new Date();
+  const moment = require("moment");
   const myAPIKey = "aa3cfa6eefb1da106652caf207699731";
 
   const loadedFavouriteCities = useSelector(
@@ -159,7 +161,9 @@ function FavouriteScreen() {
                 </Link>
               </ul>
             </div>
-            <p id="timestamp">Wed 28 Nov 2018 11.35</p>
+            <p id="timestamp">
+              {moment(today).format("ddd DD MMM YYYY HH:mm")}
+            </p>
           </nav>
         </header>
         <div className="separator" />
@@ -225,17 +229,19 @@ function FavouriteScreen() {
           {favouritePlaces?.map((data, idx) => {
             return (
               <div className="flat-tile">
-                <div className="city-names">
-                  <p>
-                    {data?.city},{data?.state}
-                  </p>
-                </div>
-                <div id="weather-stat-in-area">
-                  {renderWeatherImages(data?.weather)}
-                  <p className="temperature">{data?.temp}</p>
-                  <p id="degree">o</p>
-                  <p id="celsius-deg">C</p>
-                  <p id="weather-text">{data?.weather}</p>
+                <div className="flat-tile-first-half-fav">
+                  <div className="city-names">
+                    <p>
+                      {data?.city},{data?.state}
+                    </p>
+                  </div>
+                  <div id="weather-stat-in-area">
+                    {renderWeatherImages(data?.weather)}
+                    <p className="temperature">{data?.temp}</p>
+                    <p id="degree">o</p>
+                    <p id="celsius-deg">C</p>
+                    <p id="weather-text">{data?.weather}</p>
+                  </div>
                 </div>
 
                 <div>

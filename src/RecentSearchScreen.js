@@ -31,61 +31,9 @@ import nothing_icon from "./assets/Images/inspect/weather/Web/03_Favourite_blank
 
 function RecentSearchScreen() {
   const dispatch = useDispatch();
+  const today = new Date();
+  const moment = require("moment");
   const myAPIKey = "aa3cfa6eefb1da106652caf207699731";
-
-  const favouriteCitiesList = [
-    {
-      city: "Mangaluru",
-      state: "Karnataka",
-      weather: "Rain",
-      temp: 29,
-    },
-    {
-      city: "Bengaluru",
-      state: "Karnataka",
-      weather: "Partially Cloudy",
-      temp: 30,
-    },
-  ];
-
-  const recentCitiesList = [
-    {
-      city: "Udupi",
-      state: "Karnataka",
-      weather: "Mostly Sunny",
-      temp: 31,
-    },
-    {
-      city: "Mangaluru",
-      state: "Karnataka",
-      weather: "Rain",
-      temp: 29,
-    },
-    {
-      city: "Mysore",
-      state: "Karnataka",
-      weather: "Mostly Cloudy",
-      temp: 32,
-    },
-    {
-      city: "Bengaluru",
-      state: "Karnataka",
-      weather: "Partially Cloudy",
-      temp: 30,
-    },
-    {
-      city: "Ayodhya",
-      state: "Uttar Pradesh",
-      weather: "Thunder Storm",
-      temp: 31,
-    },
-    {
-      city: "Jaipur",
-      state: "Rajasthan",
-      weather: "Clear Night",
-      temp: 24,
-    },
-  ];
 
   const loadedFavouriteCities = useSelector(
     (state) => state?.userDataReducer?.favouriteLocations
@@ -123,22 +71,6 @@ function RecentSearchScreen() {
   }, []);
 
   console.log("RECENT FAV PLACES icon val", favouriteIconArray);
-
-  // useEffect(() => {
-  //   let tempArray = [];
-  //   const weatherDataURL = `http://api.openweathermap.org/geo/1.0/direct?q=${searchPlace}&limit=1&APPID=${myAPIKey}`;
-  //   tempArray = [...recentPlaces, searchPlace];
-  //   setRecentPlaces(tempArray);
-  //   dispatch(setRecentCities(tempArray));
-  //   console.log("recent places", tempArray);
-
-  //   fetch(weatherDataURL)?.then((res) => {
-  //     res?.json().then((resp) => {
-  //       console.log("ALL DATA", weatherDataURL, resp);
-  //       setStateName(resp?.[0]?.state);
-  //     });
-  //   });
-  // }, [weatherData]);
 
   const fetchWeatherDataValue = (apiURL) => {
     fetch(apiURL).then((res) => {
@@ -188,7 +120,7 @@ function RecentSearchScreen() {
     }
     return (
       <img
-        className="weather-icon"
+        className="weather-icon-recent"
         src={weatherIconToDisplay}
         alt="Weather Icon"
       />
@@ -243,7 +175,9 @@ function RecentSearchScreen() {
                 </Link>
               </ul>
             </div>
-            <p id="timestamp">Wed 28 Nov 2018 11.35</p>
+            <p id="timestamp">
+              {moment(today).format("ddd DD MMM YYYY HH:mm")}
+            </p>
           </nav>
         </header>
         <div className="separator" />
@@ -281,9 +215,9 @@ function RecentSearchScreen() {
 
         {recentPlaces?.length !== 0 ? (
           <div id="header-view">
-            <p id="favourite-city-text">You recently searched for</p>
+            <p id="recent-city-text">You recently searched for</p>
             <p
-              id="remove-all-text"
+              id="clear-all-text"
               onClick={() => {
                 handleShowAlert();
               }}
@@ -305,26 +239,27 @@ function RecentSearchScreen() {
         <ul>
           {recentPlaces?.map((data, idx) => {
             return (
-              <div className="flat-tile">
-                <div className="city-names">
-                  <p>
-                    {data?.city},{data?.state}
-                  </p>
+              <div className="flat-tile-recent">
+                <div className="flat-tile-first-half">
+                  <div className="city-names-recent">
+                    <p>
+                      {data?.city},{data?.state}
+                    </p>
+                  </div>
+                  <div id="weather-stat-in-area-recent">
+                    {renderWeatherImages(data?.weather)}
+                    <p className="temperature-recent">{data?.temp}</p>
+                    <p id="degree-recent">o</p>
+                    <p id="celsius-deg-recent">C</p>
+                    <p id="weather-text-recent">{data?.weather}</p>
+                  </div>
                 </div>
-                <div id="weather-stat-in-area">
-                  {renderWeatherImages(data?.weather)}
-                  <p className="temperature">{data?.temp}</p>
-                  <p id="degree">o</p>
-                  <p id="celsius-deg">C</p>
-                  <p id="weather-text">{data?.weather}</p>
-                </div>
-
                 {JSON.stringify(favouritePlaces)?.includes(
                   JSON.stringify(data)
                 ) ? (
                   <div>
                     <img
-                      id="fav-icon"
+                      id="fav-icon-recent"
                       src={highlighted_fav_icon}
                       alt="favourite-icon"
                       onClick={() => {
@@ -357,7 +292,7 @@ function RecentSearchScreen() {
                 ) : (
                   <div>
                     <img
-                      id="fav-icon"
+                      id="fav-icon-recent"
                       src={empty_fav_icon}
                       alt="favourite-icon"
                       onClick={() => {

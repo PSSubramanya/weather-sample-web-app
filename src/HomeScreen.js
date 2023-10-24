@@ -26,6 +26,8 @@ import clear_night_icon from "./assets/Images/inspect/weather/Web/01_Home/backgr
 
 function HomeScreen() {
   const dispatch = useDispatch();
+  const today = new Date();
+  const moment = require("moment");
   const myAPIKey = "aa3cfa6eefb1da106652caf207699731";
 
   const loadedFavouriteCities = useSelector(
@@ -240,7 +242,9 @@ function HomeScreen() {
                 </Link>
               </ul>
             </div>
-            <p id="timestamp">Wed 28 Nov 2018 11.35</p>
+            <p id="timestamp">
+              {moment(today).format("ddd DD MMM YYYY HH:mm")}
+            </p>
           </nav>
         </header>
         <div className="separator" />
@@ -249,66 +253,69 @@ function HomeScreen() {
             {searchPlace}, {stateName}
           </h3>
         </div>
-        {JSON.stringify(favouritePlaces)?.includes(
-          JSON.stringify(searchPlace)
-        ) ? (
-          <img
-            id="fav-icon"
-            src={highlighted_fav_icon}
-            alt="favourite-icon"
-            onClick={() => {
-              setFavouriteOn(!favouriteOn);
-              let tempArray = [];
-              const tempFavouriteCitiesArray = favouritePlaces;
-              const favCityObject = {
-                city: searchPlace,
-                state: stateName,
-                temp: Math.floor(weatherData?.main?.temp - 273),
-                weather: weatherData?.weather?.[0]?.main,
-                description: weatherData?.weather?.[0]?.description,
-              };
+        <div id="fav-section">
+          {JSON.stringify(favouritePlaces)?.includes(
+            JSON.stringify(searchPlace)
+          ) ? (
+            <img
+              id="fav-icon"
+              src={highlighted_fav_icon}
+              alt="favourite-icon"
+              onClick={() => {
+                setFavouriteOn(!favouriteOn);
+                let tempArray = [];
+                const tempFavouriteCitiesArray = favouritePlaces;
+                const favCityObject = {
+                  city: searchPlace,
+                  state: stateName,
+                  temp: Math.floor(weatherData?.main?.temp - 273),
+                  weather: weatherData?.weather?.[0]?.main,
+                  description: weatherData?.weather?.[0]?.description,
+                };
 
-              if (
-                JSON.stringify(favouritePlaces).includes(
-                  JSON.stringify(favCityObject)
-                )
-              ) {
-                tempArray = favouritePlaces.filter(
-                  (obj) => JSON.stringify(obj) !== JSON.stringify(favCityObject)
-                );
+                if (
+                  JSON.stringify(favouritePlaces).includes(
+                    JSON.stringify(favCityObject)
+                  )
+                ) {
+                  tempArray = favouritePlaces.filter(
+                    (obj) =>
+                      JSON.stringify(obj) !== JSON.stringify(favCityObject)
+                  );
+                  setFavouritePlaces(tempArray);
+                }
+
+                dispatch(setFavouriteCities(tempArray));
+
+                console.log("fav places 1", favouritePlaces);
+              }}
+            />
+          ) : (
+            <img
+              id="fav-icon"
+              src={empty_fav_icon}
+              alt="favourite-icon"
+              onClick={() => {
+                setFavouriteOn(!favouriteOn);
+                let tempArray = [];
+                const favCityObject = {
+                  city: searchPlace,
+                  state: stateName,
+                  temp: Math.floor(weatherData?.main?.temp - 273),
+                  weather: weatherData?.weather?.[0]?.main,
+                  description: weatherData?.weather?.[0]?.description,
+                };
+                // tempArray = [...favouritePlaces, searchPlace];
+                tempArray = [...favouritePlaces, favCityObject];
                 setFavouritePlaces(tempArray);
-              }
+                dispatch(setFavouriteCities(tempArray));
+                console.log("fav places 2", favouritePlaces);
+              }}
+            />
+          )}
 
-              dispatch(setFavouriteCities(tempArray));
-
-              console.log("fav places 1", favouritePlaces);
-            }}
-          />
-        ) : (
-          <img
-            id="fav-icon"
-            src={empty_fav_icon}
-            alt="favourite-icon"
-            onClick={() => {
-              setFavouriteOn(!favouriteOn);
-              let tempArray = [];
-              const favCityObject = {
-                city: searchPlace,
-                state: stateName,
-                temp: Math.floor(weatherData?.main?.temp - 273),
-                weather: weatherData?.weather?.[0]?.main,
-                description: weatherData?.weather?.[0]?.description,
-              };
-              // tempArray = [...favouritePlaces, searchPlace];
-              tempArray = [...favouritePlaces, favCityObject];
-              setFavouritePlaces(tempArray);
-              dispatch(setFavouriteCities(tempArray));
-              console.log("fav places 2", favouritePlaces);
-            }}
-          />
-        )}
-
-        <p id="fav-section-text">Added to favourites</p>
+          <p id="fav-section-text">Added to favourites</p>
+        </div>
 
         {renderWeatherImages(weatherData?.weather?.[0]?.main)}
 
