@@ -316,3 +316,15 @@
     /* margin-right: 60px; */
   }
 }
+
+@media (max-width: 380px) {
+  .flat-tile-recent{
+    display: flex;
+    background-color: rgba(255,255,255,0.1);
+    margin-left: -20px;
+    margin-right: 80px;
+    width: 335px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

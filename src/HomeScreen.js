@@ -24,6 +24,8 @@ import thunder_storm_icon from "./assets/Images/inspect/weather/Web/01_Home/back
 import cloudy_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_mostly_cloudy_big.svg";
 import clear_night_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_clear_night.svg";
 import menu_icon from "./assets/Images/inspect/weather/Web/01_Home/Group 2/menu.png";
+import snow_icon from "./assets/Images/inspect/weather/Web/01_Home/background/snow.png";
+import mist_icon from "./assets/Images/inspect/weather/Web/01_Home/background/mist.png";
 
 function HomeScreen() {
   const dispatch = useDispatch();
@@ -160,6 +162,9 @@ function HomeScreen() {
       case "Rain":
         weatherIconToDisplay = perceipitation_icon;
         break;
+      case "Drizzle":
+        weatherIconToDisplay = perceipitation_icon;
+        break;
       case "Clouds":
         weatherIconToDisplay = cloudy_icon;
         break;
@@ -169,8 +174,38 @@ function HomeScreen() {
       case "few clouds":
         weatherIconToDisplay = partially_cloudy_icon;
         break;
-      case "Thunder Storm":
+      case "Thunderstorm":
         weatherIconToDisplay = thunder_storm_icon;
+        break;
+      case "Snow":
+        weatherIconToDisplay = snow_icon;
+        break;
+      case "Mist":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Smoke":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Haze":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Dust":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Fog":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Sand":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Ash":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Squall":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Tornado":
+        weatherIconToDisplay = mist_icon;
         break;
       case "Clear Night":
         weatherIconToDisplay = clear_night_icon;

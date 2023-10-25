@@ -29,6 +29,8 @@ import cloudy_icon from "./assets/Images/inspect/weather/Web/01_Home/background/
 import clear_night_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_clear_night.svg";
 import nothing_icon from "./assets/Images/inspect/weather/Web/03_Favourite_blank/Group 38/Group 3/icon_nothing.svg";
 import menu_icon from "./assets/Images/inspect/weather/Web/01_Home/Group 2/menu.png";
+import snow_icon from "./assets/Images/inspect/weather/Web/01_Home/background/snow.png";
+import mist_icon from "./assets/Images/inspect/weather/Web/01_Home/background/mist.png";
 
 function RecentSearchScreen() {
   const dispatch = useDispatch();
@@ -98,20 +100,56 @@ function RecentSearchScreen() {
   const renderWeatherImages = (weatherType) => {
     let weatherIconToDisplay;
     switch (weatherType) {
-      case "Mostly Sunny":
+      case "mostly sunny":
         weatherIconToDisplay = sunny_weather_icon;
         break;
       case "Rain":
         weatherIconToDisplay = perceipitation_icon;
         break;
-      case "Mostly Cloudy":
+      case "Drizzle":
+        weatherIconToDisplay = perceipitation_icon;
+        break;
+      case "Clouds":
         weatherIconToDisplay = cloudy_icon;
         break;
-      case "Partially Cloudy":
+      case "scattered clouds":
         weatherIconToDisplay = partially_cloudy_icon;
         break;
-      case "Thunder Storm":
+      case "few clouds":
+        weatherIconToDisplay = partially_cloudy_icon;
+        break;
+      case "Thunderstorm":
         weatherIconToDisplay = thunder_storm_icon;
+        break;
+      case "Snow":
+        weatherIconToDisplay = snow_icon;
+        break;
+      case "Mist":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Smoke":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Haze":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Dust":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Fog":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Sand":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Ash":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Squall":
+        weatherIconToDisplay = mist_icon;
+        break;
+      case "Tornado":
+        weatherIconToDisplay = mist_icon;
         break;
       case "Clear Night":
         weatherIconToDisplay = clear_night_icon;
