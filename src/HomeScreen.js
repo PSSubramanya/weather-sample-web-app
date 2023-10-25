@@ -23,6 +23,7 @@ import partially_cloudy_icon from "./assets/Images/inspect/weather/Web/01_Home/b
 import thunder_storm_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_thunderstorm_big.svg";
 import cloudy_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_mostly_cloudy_big.svg";
 import clear_night_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_clear_night.svg";
+import menu_icon from "./assets/Images/inspect/weather/Web/01_Home/Group 2/menu.png";
 
 function HomeScreen() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function HomeScreen() {
   // const [favouritePlaces, setFavouritePlaces] = useState([]);
   const [recentPlaces, setRecentPlaces] = useState([]);
   const [favouritePlaces, setFavouritePlaces] = useState([]);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const favCities =
     JSON.stringify(loadedFavouriteCities?.data) === "{}"
@@ -201,7 +203,17 @@ function HomeScreen() {
       <body alt="background">
         <header>
           <div id="app-top-container">
-            <img src={app_icon} id="app-logo" alt="app-logo" />
+            <div id="logo-section">
+              <img
+                src={menu_icon}
+                id="menu-icon"
+                alt="menu-icon"
+                onClick={() => {
+                  setOpenMenu(true);
+                }}
+              />
+              <img src={app_icon} id="app-logo" alt="app-logo" />
+            </div>
             <div id="search-bar">
               <input
                 id="search-text"
@@ -222,6 +234,27 @@ function HomeScreen() {
               />
             </div>
           </div>
+
+          {openMenu ? (
+            <ul id="navdiv-drawer">
+              <Link>
+                <p class="navs-drawer current-drawer" href="">
+                  Home
+                </p>
+              </Link>
+              <Link to={"/favourite"}>
+                <p class="navs-drawer" href="">
+                  Favourite
+                </p>
+              </Link>
+              <Link to={"/recent"}>
+                <p class="navs-drawer recent-search" href="">
+                  Recent Search
+                </p>
+              </Link>
+            </ul>
+          ) : null}
+
           <nav id="navbar">
             <div class="container">
               <ul id="navdiv">

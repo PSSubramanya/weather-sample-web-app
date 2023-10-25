@@ -28,6 +28,7 @@ import thunder_storm_icon from "./assets/Images/inspect/weather/Web/01_Home/back
 import cloudy_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_mostly_cloudy_big.svg";
 import clear_night_icon from "./assets/Images/inspect/weather/Web/01_Home/background/icon_clear_night.svg";
 import nothing_icon from "./assets/Images/inspect/weather/Web/03_Favourite_blank/Group 38/Group 3/icon_nothing.svg";
+import menu_icon from "./assets/Images/inspect/weather/Web/01_Home/Group 2/menu.png";
 
 function RecentSearchScreen() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function RecentSearchScreen() {
   const [latlongValue, setLatLongValue] = useState({ lat: 0, long: 0 });
   const [weatherData, setWeatherData] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
     const favCities =
@@ -133,7 +135,17 @@ function RecentSearchScreen() {
       <body alt="background">
         <header>
           <div id="app-top-container">
-            <img src={app_icon} id="app-logo" alt="app-logo" />
+            <div id="logo-section">
+              <img
+                src={menu_icon}
+                id="menu-icon"
+                alt="menu-icon"
+                onClick={() => {
+                  setOpenMenu(true);
+                }}
+              />
+              <img src={app_icon} id="app-logo" alt="app-logo" />
+            </div>
             <div id="search-bar">
               <input
                 id="search-text"
@@ -154,6 +166,26 @@ function RecentSearchScreen() {
               />
             </div>
           </div>
+
+          {openMenu ? (
+            <ul id="navdiv-drawer">
+              <Link to={"/"}>
+                <p class="navs-drawer" href="">
+                  Home
+                </p>
+              </Link>
+              <Link to={"/favourite"}>
+                <p class="navs-drawer" href="">
+                  Favourite
+                </p>
+              </Link>
+              <Link to={"/recent"}>
+                <p class="navs-drawer current-drawer recent-search" href="">
+                  Recent Search
+                </p>
+              </Link>
+            </ul>
+          ) : null}
 
           <nav id="navbar">
             <div class="container">
