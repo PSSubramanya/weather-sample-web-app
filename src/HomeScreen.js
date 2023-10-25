@@ -88,7 +88,11 @@ function HomeScreen() {
         weather: weatherData?.weather?.[0]?.main,
         description: weatherData?.weather?.[0]?.description,
       };
-      tempArray = [...tempArray, favCityObject];
+      if (JSON.stringify(tempArray)?.includes(JSON.stringify(searchPlace))) {
+        tempArray = [...tempArray];
+      } else {
+        tempArray = [...tempArray, favCityObject];
+      }
       setRecentPlaces(tempArray);
       dispatch(setRecentCities(tempArray));
       console.log("recent-places 2", tempArray);
@@ -356,7 +360,15 @@ function HomeScreen() {
                   weather: weatherData?.weather?.[0]?.main,
                   description: weatherData?.weather?.[0]?.description,
                 };
-                tempArray = [...favouritePlaces, favCityObject];
+                if (
+                  JSON.stringify(favouritePlaces)?.includes(
+                    JSON.stringify(searchPlace)
+                  )
+                ) {
+                  tempArray = [...favouritePlaces];
+                } else {
+                  tempArray = [...favouritePlaces, favCityObject];
+                }
                 setFavouritePlaces(tempArray);
                 dispatch(setFavouriteCities(tempArray));
                 console.log("fav places 2", favouritePlaces);
