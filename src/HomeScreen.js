@@ -365,7 +365,15 @@ function HomeScreen() {
                     JSON.stringify(searchPlace)
                   )
                 ) {
-                  tempArray = [...favouritePlaces];
+                  favouritePlaces.map((e, i) => {
+                    if (e.city === favCityObject?.city) {
+                      favCityObject.splice(i, 1);
+                      tempArray = [...favouritePlaces, favCityObject];
+                    } else {
+                      tempArray = [...favouritePlaces, favCityObject];
+                    }
+                  });
+                  // tempArray = [...favouritePlaces];
                 } else {
                   tempArray = [...favouritePlaces, favCityObject];
                 }

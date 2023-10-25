@@ -229,32 +229,28 @@ function FavouriteScreen() {
         <div className="separator" />
 
         {showAlert ? (
-          <div className="custom-alert">
-            <div className="custom-alert-content">
-              <p d="buttons-section">
-                Are you sure you want to remove all the favourites?
-              </p>
-              <div id="buttons-section">
-                <button
-                  className="buttons"
-                  onClick={() => {
-                    handleCloseAlert();
-                  }}
-                >
-                  NO
-                </button>
-                <button
-                  className="buttons ok"
-                  onClick={() => {
-                    const tempArray = [];
-                    setFavouritePlaces(tempArray);
-                    dispatch(setFavouriteCities(tempArray));
-                    handleCloseAlert();
-                  }}
-                >
-                  YES
-                </button>
-              </div>
+          <div className="custom-alert-content">
+            <p>Are you sure you want to remove all the favourites?</p>
+            <div id="buttons-section">
+              <button
+                className="buttons"
+                onClick={() => {
+                  handleCloseAlert();
+                }}
+              >
+                NO
+              </button>
+              <button
+                className="buttons ok"
+                onClick={() => {
+                  const tempArray = [];
+                  setFavouritePlaces(tempArray);
+                  dispatch(setFavouriteCities(tempArray));
+                  handleCloseAlert();
+                }}
+              >
+                YES
+              </button>
             </div>
           </div>
         ) : null}
