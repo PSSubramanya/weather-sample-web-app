@@ -480,7 +480,7 @@ body {
     color: white;
     border-top: 0.5px solid white;
     margin-left: 1px;
-    margin-right: -100px;
+    margin-right: 1px;
     margin-top: 300px;
     display: flex;
     overflow: scroll; 
@@ -536,9 +536,20 @@ body {
     color: white;
     border-top: 0.5px solid white;
     margin-left: 1px;
-    margin-right: -100px;
+    margin-right: 1px;
     margin-top: 140px;
     display: flex;
     overflow: scroll; 
+  }
+
+  #search-text{
+    background: none;
+    border: none;
+    padding-left: 10px;
+    color: white;
+    font-size: 16px;
+    height: 45px;
+    width: 170px;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
