@@ -5,12 +5,6 @@ import {
   setFavouriteCities,
   setRecentCities,
 } from "./redux/actions/user-actions.js";
-import HomeScreen from "./HomeScreen.js";
-import FavouriteScreen from "./FavouriteScreen.js";
-// import RecentSearchScreen from "./RecentSearchScreen.js";
-import CustomAlert from "./Components/CustomAlert.js";
-
-// import "./App.css";
 import "./RecentSearchScreen.css";
 import logo from "./logo.svg";
 import app_icon from "./assets/Images/inspect/weather/Web/01_Home/logo_web.svg";

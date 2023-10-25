@@ -2,12 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setFavouriteCities } from "./redux/actions/user-actions.js";
-import HomeScreen from "./HomeScreen.js";
-// import FavouriteScreen from "./FavouriteScreen.js";
-import RecentSearchScreen from "./RecentSearchScreen.js";
-import CustomAlert from "./Components/CustomAlert.js";
-
-// import "./App.css";
 import "./FavouriteScreen.css";
 import logo from "./logo.svg";
 import app_icon from "./assets/Images/inspect/weather/Web/01_Home/logo_web.svg";
@@ -57,7 +51,6 @@ function FavouriteScreen() {
         : loadedFavouriteCities?.data;
 
     setFavouritePlaces(favCities);
-    //dispatch(setFavouriteCities(tempArray));
   }, []);
 
   const fetchWeatherDataValue = (apiURL) => {
@@ -177,7 +170,6 @@ function FavouriteScreen() {
                 onChange={handleText}
                 value={searchPlace}
               />
-              {/* <Link to={"/"}> */}
               <img
                 id="search_logo"
                 src={search_icon}
@@ -187,7 +179,6 @@ function FavouriteScreen() {
                   fetchWeatherDataValue(weatherURL);
                 }}
               />
-              {/* </Link> */}
             </div>
           </div>
 
@@ -276,7 +267,6 @@ function FavouriteScreen() {
             <p
               id="remove-all-text"
               onClick={() => {
-                // alert("HI");
                 handleShowAlert();
               }}
             >
@@ -319,7 +309,6 @@ function FavouriteScreen() {
                     src={highlighted_fav_icon}
                     alt="favourite-icon"
                     onClick={() => {
-                      // setFavouriteOn(!favouriteOn);
                       const tempFavouritePlacesArray = favouritePlaces;
                       let tempArray = [];
                       if (tempFavouritePlacesArray?.includes(data)) {

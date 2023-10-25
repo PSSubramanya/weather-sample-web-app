@@ -5,8 +5,6 @@ import {
   setFavouriteCities,
   setRecentCities,
 } from "./redux/actions/user-actions.js";
-import FavouriteScreen from "./FavouriteScreen.js";
-import RecentSearchScreen from "./RecentSearchScreen.js";
 import "./HomeScreen.css";
 
 import app_icon from "./assets/Images/inspect/weather/Web/01_Home/logo_web.svg";
@@ -44,11 +42,8 @@ function HomeScreen() {
   const [favouriteOn, setFavouriteOn] = useState(false);
   const [temperatureType, setTemperatureType] = useState("celsius");
   const [weatherData, setWeatherData] = useState([]);
-
   const [searchPlace, setSearchPlace] = useState("Udupi");
   const [stateName, setStateName] = useState("Karnataka");
-  // const [recentPlaces, setRecentPlaces] = useState([]);
-  // const [favouritePlaces, setFavouritePlaces] = useState([]);
   const [recentPlaces, setRecentPlaces] = useState([]);
   const [favouritePlaces, setFavouritePlaces] = useState([]);
   const [openMenu, setOpenMenu] = useState(false);
@@ -67,16 +62,6 @@ function HomeScreen() {
     const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchPlace}&appid=${myAPIKey}`;
     fetchWeatherDataValue(weatherURL);
 
-    // const favCities =
-    //   JSON.stringify(loadedFavouriteCities?.data) === "{}"
-    //     ? []
-    //     : loadedFavouriteCities?.data;
-
-    // const recentCities =
-    //   JSON.stringify(loadedRecentCities?.data) === "{}"
-    //     ? []
-    //     : loadedRecentCities?.data;
-
     setFavouritePlaces(favCities);
     setRecentPlaces(recentCities);
   }, []);
@@ -94,7 +79,6 @@ function HomeScreen() {
 
   useEffect(() => {
     if (weatherData?.name !== undefined) {
-      // let tempArray = recentPlaces;
       let tempArray = recentCities;
       console.log("recent-places 1", tempArray);
       const favCityObject = {
@@ -104,7 +88,6 @@ function HomeScreen() {
         weather: weatherData?.weather?.[0]?.main,
         description: weatherData?.weather?.[0]?.description,
       };
-      // tempArray = [...recentPlaces, favCityObject];
       tempArray = [...tempArray, favCityObject];
       setRecentPlaces(tempArray);
       dispatch(setRecentCities(tempArray));
@@ -373,7 +356,6 @@ function HomeScreen() {
                   weather: weatherData?.weather?.[0]?.main,
                   description: weatherData?.weather?.[0]?.description,
                 };
-                // tempArray = [...favouritePlaces, searchPlace];
                 tempArray = [...favouritePlaces, favCityObject];
                 setFavouritePlaces(tempArray);
                 dispatch(setFavouriteCities(tempArray));
